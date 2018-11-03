@@ -1,0 +1,36 @@
+<phpunit
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/6.3/phpunit.xsd"
+        bootstrap="./bootstrap.php"
+        colors="true"
+        >
+    <testsuites>
+        <testsuite name="Unit">
+            <directory>./tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Feature">
+            <directory>./tests/Feature</directory>
+        </testsuite>
+    </testsuites>
+
+    <group>
+        <include>
+            <group>thread</group>
+            <group>reply</group>
+        </include>
+        <exclude>
+            <group>user</group>
+        </exclude>
+    </group>
+
+    <logging>
+        <log type="testdox-html" target="./res.html"></log>
+        <log type="testdox-text" target="./res.md"></log>
+    </logging>
+    <php>
+        <includePath>.</includePath>
+        <ini name="swoole" value="swoole.so"></ini> php.ini
+        <var name="user"></var>                     $GLOBALS
+        <env nam="app_debug" value="true"></env>    $_env
+    </php>
+</phpunit>
